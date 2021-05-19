@@ -1,4 +1,7 @@
-use crate::{si12::Si12, si144::Si144, si332::Si332, si52::Si52, sisize::Sisize};
+use crate::{
+    si12::Si12, si144::Si144, si332::Si332, si52::Si52, sisize::Sisize, su12::Su12, su144::Su144,
+    su24::Su24, su332::Su332, su52::Su52, susize::Susize,
+};
 use num::pow::checked_pow;
 use std::{fmt, ops::*};
 
@@ -70,6 +73,32 @@ impl Si24 {
 
     pub fn as_si12(&self) -> Si12 {
         Si12::new(self.value as i8)
+    }
+
+    // Conversion to unsigned integer types
+
+    pub fn as_susize(&self) -> Susize {
+        Susize::new(self.value as usize)
+    }
+
+    pub fn as_su332(&self) -> Su332 {
+        Su332::new(self.value as u128)
+    }
+
+    pub fn as_su144(&self) -> Su144 {
+        Su144::new(self.value as u64)
+    }
+
+    pub fn as_su52(&self) -> Su52 {
+        Su52::new(self.value as u32)
+    }
+
+    pub fn as_su24(&self) -> Su24 {
+        Su24::new(self.value as u16)
+    }
+
+    pub fn as_su12(&self) -> Su12 {
+        Su12::new(self.value as u8)
     }
 }
 

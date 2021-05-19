@@ -1,14 +1,14 @@
 #[cfg(test)]
-mod si332_tests {
-    use crate::si332::Si332;
+mod su12_tests {
+    use crate::su12::Su12;
     use std::cmp::{
         Ordering,
         Ordering::{Equal, Greater, Less},
     };
 
     #[test]
-    fn si332_new() {
-        let num = Si332::new(13);
+    fn su12_new() {
+        let num = Su12::new(13);
         assert_eq!(
             num.to_string(),
             "21",
@@ -16,26 +16,18 @@ mod si332_tests {
             num.to_string()
         );
 
-        let num = Si332::new(0);
+        let num = Su12::new(0);
         assert_eq!(
             num.to_string(),
             "0",
             "to_string failed, expected 0, got {}",
             num.to_string()
         );
-
-        let num = Si332::new(-36);
-        assert_eq!(
-            num.to_string(),
-            "-100",
-            "to_string failed, expected -100, got {}",
-            num.to_string()
-        );
     }
 
     #[test]
-    fn si332_from() {
-        let num = Si332::from("21").unwrap();
+    fn su12_from() {
+        let num = Su12::from("21").unwrap();
         assert_eq!(
             num.value(),
             13,
@@ -43,33 +35,25 @@ mod si332_tests {
             num.to_string()
         );
 
-        let num = Si332::from("0").unwrap();
+        let num = Su12::from("0").unwrap();
         assert_eq!(
             num.value(),
             0,
             "from failed, expected 0, got {}",
             num.to_string()
         );
-
-        let num = Si332::from("-100").unwrap();
-        assert_eq!(
-            num.value(),
-            -36,
-            "from failed, expected -36, got {}",
-            num.to_string()
-        );
     }
 
     #[test]
     #[should_panic]
-    fn si332_from_panics() {
-        let _num = Si332::from("9").unwrap();
+    fn su12_from_panics() {
+        let _num = Su12::from("9").unwrap();
     }
 
     #[test]
-    fn si332_native_arithmetic() {
-        let mut num = Si332::new(13);
-        num += Si332::new(2);
+    fn su12_native_arithmetic() {
+        let mut num = Su12::new(13);
+        num += Su12::new(2);
         assert_eq!(
             num.to_string(),
             "23",
@@ -77,7 +61,7 @@ mod si332_tests {
             num.to_string()
         );
 
-        num -= Si332::new(2);
+        num -= Su12::new(2);
         assert_eq!(
             num.to_string(),
             "21",
@@ -85,7 +69,7 @@ mod si332_tests {
             num.to_string()
         );
 
-        num *= Si332::new(2);
+        num *= Su12::new(2);
         assert_eq!(
             num.to_string(),
             "42",
@@ -93,7 +77,7 @@ mod si332_tests {
             num.to_string()
         );
 
-        num /= Si332::new(2);
+        num /= Su12::new(2);
         assert_eq!(
             num.to_string(),
             "21",
@@ -101,7 +85,7 @@ mod si332_tests {
             num.to_string()
         );
 
-        num %= Si332::new(3);
+        num %= Su12::new(3);
         assert_eq!(
             num.to_string(),
             "1",
@@ -111,8 +95,8 @@ mod si332_tests {
     }
 
     #[test]
-    fn si332_decimal_arithmetic() {
-        let mut num = Si332::new(13);
+    fn su12_decimal_arithmetic() {
+        let mut num = Su12::new(13);
         num += 2;
         assert_eq!(
             num.to_string(),
@@ -155,9 +139,9 @@ mod si332_tests {
     }
 
     #[test]
-    fn si332_cmp() {
-        let a = Si332::new(3);
-        let b = Si332::new(5);
+    fn su12_cmp() {
+        let a = Su12::new(3);
+        let b = Su12::new(5);
         let mut result;
 
         result = a.cmp(&b);
@@ -180,7 +164,7 @@ mod si332_tests {
             ordering_to_string(result)
         );
 
-        let c = Si332::new(3);
+        let c = Su12::new(3);
         result = a.cmp(&c);
         assert_eq!(
             result,

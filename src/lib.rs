@@ -5,6 +5,13 @@ pub mod si332;
 pub mod si52;
 pub mod sisize;
 
+pub mod su12;
+pub mod su144;
+pub mod su24;
+pub mod su332;
+pub mod su52;
+pub mod susize;
+
 #[cfg(test)]
 mod sisize_tests {
     use crate::sisize::Sisize;
@@ -1203,6 +1210,1128 @@ mod si332_tests {
         );
 
         let c = Si332::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod susize_tests {
+    use crate::susize::Susize;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn susize_new() {
+        let num = Susize::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Susize::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn susize_from() {
+        let num = Susize::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Susize::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn susize_from_panics() {
+        let _num = Susize::from("9").unwrap();
+    }
+
+    #[test]
+    fn susize_native_arithmetic() {
+        let mut num = Susize::new(13);
+        num += Susize::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Susize::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Susize::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Susize::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Susize::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn susize_decimal_arithmetic() {
+        let mut num = Susize::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn susize_cmp() {
+        let a = Susize::new(3);
+        let b = Susize::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Susize::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod su332_tests {
+    use crate::su332::Su332;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn su332_new() {
+        let num = Su332::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Su332::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su332_from() {
+        let num = Su332::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Su332::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn su332_from_panics() {
+        let _num = Su332::from("9").unwrap();
+    }
+
+    #[test]
+    fn su332_native_arithmetic() {
+        let mut num = Su332::new(13);
+        num += Su332::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Su332::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Su332::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Su332::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Su332::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su332_decimal_arithmetic() {
+        let mut num = Su332::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su332_cmp() {
+        let a = Su332::new(3);
+        let b = Su332::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Su332::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod su144_tests {
+    use crate::su144::Su144;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn su144_new() {
+        let num = Su144::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Su144::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su144_from() {
+        let num = Su144::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Su144::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn su144_from_panics() {
+        let _num = Su144::from("9").unwrap();
+    }
+
+    #[test]
+    fn su144_native_arithmetic() {
+        let mut num = Su144::new(13);
+        num += Su144::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Su144::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Su144::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Su144::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Su144::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su144_decimal_arithmetic() {
+        let mut num = Su144::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su144_cmp() {
+        let a = Su144::new(3);
+        let b = Su144::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Su144::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod su52_tests {
+    use crate::su52::Su52;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn su52_new() {
+        let num = Su52::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Su52::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su52_from() {
+        let num = Su52::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Su52::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn su52_from_panics() {
+        let _num = Su52::from("9").unwrap();
+    }
+
+    #[test]
+    fn su52_native_arithmetic() {
+        let mut num = Su52::new(13);
+        num += Su52::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Su52::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Su52::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Su52::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Su52::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su52_decimal_arithmetic() {
+        let mut num = Su52::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su52_cmp() {
+        let a = Su52::new(3);
+        let b = Su52::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Su52::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod su24_tests {
+    use crate::su24::Su24;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn su24_new() {
+        let num = Su24::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Su24::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su24_from() {
+        let num = Su24::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Su24::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn su24_from_panics() {
+        let _num = Su24::from("9").unwrap();
+    }
+
+    #[test]
+    fn su24_native_arithmetic() {
+        let mut num = Su24::new(13);
+        num += Su24::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Su24::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Su24::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Su24::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Su24::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su24_decimal_arithmetic() {
+        let mut num = Su24::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su24_cmp() {
+        let a = Su24::new(3);
+        let b = Su24::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Su24::new(3);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+
+    fn ordering_to_string(ordering: Ordering) -> String {
+        match ordering {
+            Less => String::from("Less"),
+            Greater => String::from("Greater"),
+            Equal => String::from("Equal"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod su12_tests {
+    use crate::su12::Su12;
+    use std::cmp::{
+        Ordering,
+        Ordering::{Equal, Greater, Less},
+    };
+
+    #[test]
+    fn su12_new() {
+        let num = Su12::new(13);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "to_string failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        let num = Su12::new(0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su12_from() {
+        let num = Su12::from("21").unwrap();
+        assert_eq!(
+            num.value(),
+            13,
+            "from failed, expected 13, got {}",
+            num.to_string()
+        );
+
+        let num = Su12::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0,
+            "from failed, expected 0, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn su12_from_panics() {
+        let _num = Su12::from("9").unwrap();
+    }
+
+    #[test]
+    fn su12_native_arithmetic() {
+        let mut num = Su12::new(13);
+        num += Su12::new(2);
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= Su12::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= Su12::new(2);
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= Su12::new(2);
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= Su12::new(3);
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su12_decimal_arithmetic() {
+        let mut num = Su12::new(13);
+        num += 2;
+        assert_eq!(
+            num.to_string(),
+            "23",
+            "21 + 2 failed, expected 23, got {}",
+            num.to_string()
+        );
+
+        num -= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "23 - 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num *= 2;
+        assert_eq!(
+            num.to_string(),
+            "42",
+            "21 * 2 failed, expected 42, got {}",
+            num.to_string()
+        );
+
+        num /= 2;
+        assert_eq!(
+            num.to_string(),
+            "21",
+            "42 / 2 failed, expected 21, got {}",
+            num.to_string()
+        );
+
+        num %= 3;
+        assert_eq!(
+            num.to_string(),
+            "1",
+            "21 % 3 failed, expected 1, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn su12_cmp() {
+        let a = Su12::new(3);
+        let b = Su12::new(5);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Su12::new(3);
         result = a.cmp(&c);
         assert_eq!(
             result,
