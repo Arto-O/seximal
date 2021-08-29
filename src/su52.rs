@@ -21,11 +21,7 @@ impl Su52 {
             None => return Err(String::from("overflow")),
         }
 
-        let mut v = Vec::new();
-
-        for c in input.chars() {
-            v.push(c);
-        }
+        let v: Vec<char> = input.chars().collect();
 
         let mut value = 0;
         let mut i = v.len();
@@ -103,7 +99,7 @@ impl Su52 {
 impl fmt::Display for Su52 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut dec_value = self.value;
-        let mut s = String::from("");
+        let mut s = String::new();
 
         while dec_value >= 6 {
             s.insert(0, ((dec_value % 6) as u8 + '0' as u8) as char);

@@ -1,3 +1,8 @@
+use std::cmp::{
+    Ordering,
+    Ordering::{Equal, Greater, Less},
+};
+
 pub mod si12;
 pub mod si144;
 pub mod si24;
@@ -12,13 +17,22 @@ pub mod su332;
 pub mod su52;
 pub mod susize;
 
+pub mod sf144;
+pub mod sf52;
+
+fn ordering_to_string(ord: Ordering) -> String {
+    match ord {
+        Greater => String::from("Greater"),
+        Less => String::from("Less"),
+        Equal => String::from("Equal"),
+    }
+}
+
 #[cfg(test)]
 mod sisize_tests {
+    use crate::ordering_to_string;
     use crate::sisize::Sisize;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn sisize_new() {
@@ -205,23 +219,13 @@ mod sisize_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod si144_tests {
+    use crate::ordering_to_string;
     use crate::si144::Si144;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn si144_new() {
@@ -408,23 +412,13 @@ mod si144_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod si52_tests {
+    use crate::ordering_to_string;
     use crate::si52::Si52;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn si52_new() {
@@ -611,23 +605,13 @@ mod si52_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod si24_tests {
+    use crate::ordering_to_string;
     use crate::si24::Si24;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn si24_new() {
@@ -814,23 +798,13 @@ mod si24_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod si12_tests {
+    use crate::ordering_to_string;
     use crate::si12::Si12;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn si12_new() {
@@ -1017,23 +991,13 @@ mod si12_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod si332_tests {
+    use crate::ordering_to_string;
     use crate::si332::Si332;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn si332_new() {
@@ -1220,23 +1184,13 @@ mod si332_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod susize_tests {
+    use crate::ordering_to_string;
     use crate::susize::Susize;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn susize_new() {
@@ -1407,23 +1361,13 @@ mod susize_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod su332_tests {
+    use crate::ordering_to_string;
     use crate::su332::Su332;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn su332_new() {
@@ -1594,23 +1538,13 @@ mod su332_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod su144_tests {
+    use crate::ordering_to_string;
     use crate::su144::Su144;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn su144_new() {
@@ -1781,23 +1715,13 @@ mod su144_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod su52_tests {
+    use crate::ordering_to_string;
     use crate::su52::Su52;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn su52_new() {
@@ -1968,23 +1892,13 @@ mod su52_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod su24_tests {
+    use crate::ordering_to_string;
     use crate::su24::Su24;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn su24_new() {
@@ -2155,23 +2069,13 @@ mod su24_tests {
             ordering_to_string(result)
         );
     }
-
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
-    }
 }
 
 #[cfg(test)]
 mod su12_tests {
+    use crate::ordering_to_string;
     use crate::su12::Su12;
-    use std::cmp::{
-        Ordering,
-        Ordering::{Equal, Greater, Less},
-    };
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     #[test]
     fn su12_new() {
@@ -2342,12 +2246,434 @@ mod su12_tests {
             ordering_to_string(result)
         );
     }
+}
 
-    fn ordering_to_string(ordering: Ordering) -> String {
-        match ordering {
-            Less => String::from("Less"),
-            Greater => String::from("Greater"),
-            Equal => String::from("Equal"),
-        }
+#[cfg(test)]
+mod sf144_tests {
+    use crate::ordering_to_string;
+    use crate::sf144::Sf144;
+    use std::cmp::Ordering::{Equal, Greater, Less};
+
+    #[test]
+    fn sf144_new() {
+        let num = Sf144::new(2.5);
+        assert_eq!(
+            num.to_string(),
+            "2.3",
+            "to_string failed, expected 2.3, got {}",
+            num.to_string()
+        );
+
+        let num = Sf144::new(0.0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+
+        let num = Sf144::new(-6.25);
+        assert_eq!(
+            num.to_string(),
+            "-10.13",
+            "to_string failed, expected -10.13, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn sf144_from() {
+        let num = Sf144::from("2.3").unwrap();
+        assert_eq!(
+            num.value(),
+            2.5,
+            "from failed, expected 2.5, got {}",
+            num.value()
+        );
+
+        let num = Sf144::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0.0,
+            "from failed, expected 0.0, got {}",
+            num.value()
+        );
+
+        let num = Sf144::from("-10.13").unwrap();
+        assert_eq!(
+            num.value(),
+            -6.25,
+            "from failed, expected -6.25, got {}",
+            num.value()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn sf144_from_panics() {
+        let _num = Sf144::from("6.6").unwrap();
+    }
+
+    #[test]
+    fn sf144_native_arithmetic() {
+        let mut num = Sf144::new(2.2);
+        let mut reference = 2.2;
+        num += Sf144::new(1.4);
+        reference += 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 + 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num -= Sf144::new(1.4);
+        reference -= 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "3.6 - 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num *= Sf144::new(0.7);
+        reference *= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 * 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num /= Sf144::new(0.7);
+        reference /= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "1.54 / 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num %= Sf144::new(1.1);
+        reference %= 1.1;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 % 1.1 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+    }
+
+    #[test]
+    fn sf144_decimal_arithmetic() {
+        let mut num = Sf144::new(2.2);
+        let mut reference = 2.2;
+        num += 1.4;
+        reference += 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 + 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num -= 1.4;
+        reference -= 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "3.6 - 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num *= 0.7;
+        reference *= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 * 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num /= 0.7;
+        reference /= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "1.54 / 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num %= 1.1;
+        reference %= 1.1;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 % 1.1 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+    }
+
+    #[test]
+    fn sf144_cmp() {
+        let a = Sf144::new(3.5);
+        let b = Sf144::new(5.4);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Sf144::new(3.5);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
+    }
+}
+
+#[cfg(test)]
+mod sf52_tests {
+    use crate::ordering_to_string;
+    use crate::sf52::Sf52;
+    use std::cmp::Ordering::{Equal, Greater, Less};
+
+    #[test]
+    fn sf52_new() {
+        let num = Sf52::new(2.5);
+        assert_eq!(
+            num.to_string(),
+            "2.3",
+            "to_string failed, expected 2.3, got {}",
+            num.to_string()
+        );
+
+        let num = Sf52::new(0.0);
+        assert_eq!(
+            num.to_string(),
+            "0",
+            "to_string failed, expected 0, got {}",
+            num.to_string()
+        );
+
+        let num = Sf52::new(-6.25);
+        assert_eq!(
+            num.to_string(),
+            "-10.13",
+            "to_string failed, expected -10.13, got {}",
+            num.to_string()
+        );
+    }
+
+    #[test]
+    fn sf52_from() {
+        let num = Sf52::from("2.3").unwrap();
+        assert_eq!(
+            num.value(),
+            2.5,
+            "from failed, expected 2.5, got {}",
+            num.value()
+        );
+
+        let num = Sf52::from("0").unwrap();
+        assert_eq!(
+            num.value(),
+            0.0,
+            "from failed, expected 0.0, got {}",
+            num.value()
+        );
+
+        let num = Sf52::from("-10.13").unwrap();
+        assert_eq!(
+            num.value(),
+            -6.25,
+            "from failed, expected -6.25, got {}",
+            num.value()
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn sf52_from_panics() {
+        let _num = Sf52::from("6.6").unwrap();
+    }
+
+    #[test]
+    fn sf52_native_arithmetic() {
+        let mut num = Sf52::new(2.2);
+        let mut reference = 2.2;
+        num += Sf52::new(1.4);
+        reference += 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 + 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num -= Sf52::new(1.4);
+        reference -= 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "3.6 - 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num *= Sf52::new(0.7);
+        reference *= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 * 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num /= Sf52::new(0.7);
+        reference /= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "1.54 / 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num %= Sf52::new(1.1);
+        reference %= 1.1;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 % 1.1 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+    }
+
+    #[test]
+    fn sf52_decimal_arithmetic() {
+        let mut num = Sf52::new(2.2);
+        let mut reference = 2.2;
+        num += 1.4;
+        reference += 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 + 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num -= 1.4;
+        reference -= 1.4;
+        assert_eq!(
+            num.value(),
+            reference,
+            "3.6 - 1.4 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num *= 0.7;
+        reference *= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 * 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num /= 0.7;
+        reference /= 0.7;
+        assert_eq!(
+            num.value(),
+            reference,
+            "1.54 / 0.7 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+
+        num %= 1.1;
+        reference %= 1.1;
+        assert_eq!(
+            num.value(),
+            reference,
+            "2.2 % 1.1 failed, expected {}, got {}",
+            reference,
+            num.value()
+        );
+    }
+
+    #[test]
+    fn sf52_cmp() {
+        let a = Sf52::new(3.5);
+        let b = Sf52::new(5.4);
+        let mut result;
+
+        result = a.cmp(&b);
+        assert_eq!(
+            result,
+            Less,
+            "{}.cmp(&{}) failed, expected Less, got {}",
+            a,
+            b,
+            ordering_to_string(result)
+        );
+
+        result = b.cmp(&a);
+        assert_eq!(
+            result,
+            Greater,
+            "{}.cmp(&{}) failed, expected Greater, got {}",
+            b,
+            a,
+            ordering_to_string(result)
+        );
+
+        let c = Sf52::new(3.5);
+        result = a.cmp(&c);
+        assert_eq!(
+            result,
+            Equal,
+            "{}.cmp({}) failed, expected Equal, got {}",
+            a,
+            c,
+            ordering_to_string(result)
+        );
     }
 }

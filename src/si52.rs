@@ -22,11 +22,7 @@ impl Si52 {
             return Err(String::from("overflow"));
         }
 
-        let mut v = Vec::new();
-
-        for c in input.chars() {
-            v.push(c);
-        }
+        let v: Vec<char> = input.chars().collect();
 
         let mut value = 0;
         let mut i = v.len();
@@ -113,7 +109,7 @@ impl fmt::Display for Si52 {
             index = 1;
             dec_value *= -1;
         } else {
-            s = String::from("");
+            s = String::new();
             index = 0;
         }
 
