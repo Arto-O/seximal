@@ -28,4 +28,5 @@ mod floating_point_types;
 pub use floating_point_types::Sf144;
 pub use floating_point_types::Sf52;
 
+#[cfg(test)]
 mod util;
