@@ -46,21 +46,21 @@ impl FractDigit {
             let mut previous = digit;
             digit += 1;
 
-            loop {
+            while digit < 5 {
                 if digit as f64 / 6.0 < fraction {
                     previous = digit;
                     digit += 1;
-                } else if digit == 5 {
-                    break;
                 } else if digit as f64 == fraction {
                     return (digit + '0' as u8) as char;
                 } else {
-                    if fraction - previous as f64 / 6.0 < digit as f64 / 6.0 - fraction {
-                        digit = previous;
-                    }
-
                     break;
                 }
+            }
+            if fraction - previous as f64 / 6.0 < digit as f64 / 6.0 - fraction
+                || fraction - previous as f64 / 6.0 == digit as f64 / 6.0 - fraction
+                    && previous % 2 == 0
+            {
+                digit = previous;
             }
         } else if digit as f64 / 6.0 > fraction {
             let mut previous = digit;
@@ -73,12 +73,14 @@ impl FractDigit {
                 } else if digit as f64 == fraction {
                     return (digit + '0' as u8) as char;
                 } else {
-                    if previous as f64 / 6.0 - fraction <= fraction - digit as f64 / 6.0 {
-                        digit = previous;
-                    }
-
                     break;
                 }
+            }
+            if previous as f64 / 6.0 - fraction < fraction - digit as f64 / 6.0
+                || previous as f64 / 6.0 - fraction == fraction - digit as f64 / 6.0
+                    && previous % 2 == 0
+            {
+                digit = previous;
             }
         }
 
