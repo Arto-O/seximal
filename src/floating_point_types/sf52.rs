@@ -146,6 +146,46 @@ impl Sf52 {
     pub fn as_sf144(&self) -> Sf144 {
         Sf144::new(self.value as f64)
     }
+
+    /// Raises a number to a floating point power
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use seximal::Sf52;
+    ///
+    /// let x = Sf52::new(2.0);
+    /// let abs_difference = (x.powf(Sf52::new(2.0)) - x * x).abs();
+    ///
+    /// assert!(abs_difference.value() <= f32::EPSILON);
+    /// ```
+    pub fn powf(self, n: Self) -> Self {
+        Self {
+            value: self.value.powf(n.value),
+        }
+    }
+
+    /// Computes the absolute value of `self`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use seximal::Sf52;
+    ///
+    /// let x = Sf52::new(3.5);
+    /// let y = Sf52::new(-3.5);
+    ///
+    /// let abs_difference_x = (x.abs() - x).abs();
+    /// let abs_difference_y = (y.abs() + y).abs();
+    ///
+    /// assert!(abs_difference_x.value() <= f32::EPSILON);
+    /// assert!(abs_difference_y.value() <= f32::EPSILON);
+    /// ```
+    pub fn abs(self) -> Self {
+        Self {
+            value: self.value.abs(),
+        }
+    }
 }
 
 impl fmt::Display for Sf52 {
