@@ -312,13 +312,18 @@ impl Su24 {
 impl fmt::Display for Su24 {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut dec_value = self.value;
-        let mut s = String::new();
+        let mut s;
 
-        while dec_value >= 6 {
+        if dec_value == 0 {
+            s = String::from('0');
+        } else {
+            s = String::new();
+        }
+
+        while dec_value > 0 {
             s.insert(0, ((dec_value % 6) as u8 + '0' as u8) as char);
             dec_value /= 6;
         }
-        s.insert(0, (dec_value as u8 + '0' as u8) as char);
 
         write!(f, "{}", s)
     }

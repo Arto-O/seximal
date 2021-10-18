@@ -357,22 +357,22 @@ impl fmt::Display for Sisize {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut dec_value = self.value;
         let mut s;
-        let index;
+        let mut index = 0;
 
         if dec_value < 0 {
             s = String::from('-');
             index = 1;
             dec_value *= -1;
-        } else {
+        } else if dec_value > 0 {
             s = String::new();
-            index = 0;
+        } else {
+            s = String::from('0');
         }
 
-        while dec_value >= 6 {
+        while dec_value > 0 {
             s.insert(index, ((dec_value % 6) as u8 + '0' as u8) as char);
             dec_value /= 6;
         }
-        s.insert(index, (dec_value as u8 + '0' as u8) as char);
 
         write!(f, "{}", s)
     }
