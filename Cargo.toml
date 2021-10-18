@@ -1,6 +1,6 @@
 [package]
 name = "seximal"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["artoo"]
 description = "A seximal (base6) equivalent of Rust's type system."
 license = "MIT OR Apache-2.0"
