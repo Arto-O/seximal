@@ -172,7 +172,7 @@ impl fmt::Display for Sf52 {
 
         while dec_value > u128::MAX as f32 {
             dec_value /= 6.0;
-            s.insert(index, '0');
+            s.push('0');
         }
         s.insert_str(index, &format!("{}", Su332::new(dec_value as u128)));
 
@@ -191,6 +191,10 @@ impl fmt::Display for Sf52 {
             s.push((fract_part as u8 + '0' as u8) as char);
 
             fract_part = fract_part.fract();
+        }
+
+        if &s[s.len() - 1..s.len()] == "." {
+            s.remove(s.len() - 1);
         }
 
         write!(f, "{}", s)
