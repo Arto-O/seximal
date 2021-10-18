@@ -1,4 +1,4 @@
-use super::{util::FractDigit, Sf52};
+use super::Sf52;
 use crate::Su332;
 use std::{cmp::Ordering, fmt, ops::*};
 
@@ -186,25 +186,14 @@ impl fmt::Display for Sf144 {
 
         let mut fract_part = dec_value.fract();
         while s.len() < if negative { 21 } else { 20 } {
-            if s.len() == 19 {
-                s.push(FractDigit::get_last_fract_digit(fract_part));
-            } else {
-                let mut exact = false;
-
-                s.push(match FractDigit::get_next_fract_digit(fract_part) {
-                    FractDigit::Exact(c) => {
-                        exact = true;
-                        c
-                    }
-                    FractDigit::Continue(c) => c,
-                });
-
-                if exact {
-                    break;
-                }
+            if fract_part == 0.0 {
+                break;
             }
 
             fract_part *= 6.0;
+
+            s.push((fract_part as u8 + '0' as u8) as char);
+
             fract_part = fract_part.fract();
         }
 
